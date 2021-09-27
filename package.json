@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "type": "module",
   "engines": {
-    "node": ">= 13"
+    "node": "> 13"
   },
   "scripts": {
     "prebuild": "rm -rf dist",
@@ -40,6 +40,7 @@
     "fastify-sensible": "^3.1.1",
     "fastify-socket.io": "^2.0.1",
     "fastify-static": "^4.2.3",
+    "formik": "^2.2.9",
     "http-errors": "^1.8.0",
     "i18next": "^21.1.0",
     "jquery": "^3.6.0",

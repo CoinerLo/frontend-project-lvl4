@@ -11,19 +11,19 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
-  entry: {
-    index: './src/index.js',
-    style: './assets/application.scss',
-  },
   output: {
     filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.join(__dirname, 'dist', 'public'),
+    publicPath: '/assets/',
   },
   devServer: {
     compress: true,
     port: 8080,
     host: '0.0.0.0',
     historyApiFallback: true,
+    static: {
+      publicPath: '/assets/',
+    },
   },
   plugins: [
     new MiniCssExtractPlugin(),
@@ -40,6 +40,7 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [
           { loader: MiniCssExtractPlugin.loader },
+          { loader: 'style-loader' },
           { loader: 'css-loader' },
           { loader: 'postcss-loader' },
           { loader: 'sass-loader' },
