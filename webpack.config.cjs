@@ -12,15 +12,17 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   output: {
-    filename: '[name].[contenthash].js',
+    // filename: '[name].[contenthash].js',
     path: path.join(__dirname, 'dist', 'public'),
     publicPath: '/assets/',
   },
+  devtool: 'inline-source-map',
   devServer: {
     compress: true,
     port: 8080,
     host: '0.0.0.0',
     historyApiFallback: true,
+    open: true,
     static: {
       publicPath: '/assets/',
     },
@@ -39,16 +41,14 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          { loader: MiniCssExtractPlugin.loader },
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'postcss-loader' },
-          { loader: 'sass-loader' },
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
         ],
       },
       {
-        test: /\.(ttf|eot|svg)(\?[\s\S]+)?$/,
-        use: 'file-loader',
+        test: /\.(ttf|jpe?g|eot|svg)(\?[\s\S]+)?$/,
+        type: 'asset/inline',
       },
     ],
   },

@@ -10,7 +10,7 @@ const init = async () => {
   await i18n
     .use(initReactI18next)
     .init({
-      locales,
+      resources: locales,
       fallbackLng: 'ru',
     });
 

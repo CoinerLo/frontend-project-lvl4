@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useContext } from 'react';
 import { useFormik } from 'formik';
 import {
   Button,
@@ -9,13 +9,19 @@ import {
   FormLabel,
 } from 'react-bootstrap';
 import * as Yup from 'yup';
-import { NavLink } from 'react-router-dom';
-// import { useTranslation } from 'react-i18next';
+import axios from 'axios';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import routes from '../routes.js';
+import AuthContext from '../context/AuthContext.jsx';
+import loginImage from '../../assets/images/loginPageImage.jpg';
 
 const LoginPage = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
+  const history = useHistory();
+  const location = useLocation();
+  const { logIn } = useContext(AuthContext);
   const nameInput = useRef(null);
 
   useEffect(() => {
@@ -27,13 +33,19 @@ const LoginPage = () => {
       .max(20, 'errors.length')
       .required('Required'),
     password: Yup.string()
-      .min(6, 'errors.passMin')
-      .max(20, 'errors.passMax')
+      .min(5, 'errors.passMin')
+      .max(20, 'errors.passMax') // Разобраться с ошибками и их выводом
       .required('errors.required'),
   });
 
   const getError = (e) => {
-    console.log(e);
+    if (e.response.status === 401) {
+      return 'errors.logError';
+    }
+    if (e.response.statusText === 'Network Error') {
+      return 'errors.netError';
+    }
+    return 'errors.someError';
   };
 
   const formik = useFormik({
@@ -42,12 +54,17 @@ const LoginPage = () => {
       password: '',
     },
     validationSchema,
+    validateOnChange: false,
     onSubmit: async (value, { setErrors }) => {
-      // const { chatPagePath, loginPath } = routes;
+      const { chatPagePath, loginPath } = routes;
       try {
-        console.log(value);
+        const { data } = await axios.post(loginPath(), value);
+        logIn(data);
+        const { pathname } = location.state.from;
+        history.replace(pathname ?? chatPagePath());
       } catch (e) {
         console.log(e.response);
+        nameInput.current.select();
         setErrors({ password: getError(e) });
       }
     },
@@ -59,9 +76,9 @@ const LoginPage = () => {
         <div className="col-xl-8 col-xxl-6">
           <Card id="logIn" className="shadow-sm">
             <Card.Body className="d-flex flex-column flex-md-row justify-content-around align-items-center p-5">
-              <div>img</div>
+              <div><img src={loginImage} className="rounded-circle" alt={t('loginPage.login')} /></div>
               <Form className="w-50" onSubmit={formik.handleSubmit}>
-                <h1 className="text-center mb-4">Voititi</h1>
+                <h1 className="text-center mb-4">{t('loginPage.login')}</h1>
                 <FormGroup className="form-floating mb-3">
                   <FormControl
                     ref={nameInput}
@@ -69,13 +86,13 @@ const LoginPage = () => {
                     id="username"
                     name="username"
                     autoComplete="username"
-                    placeholder="nickName_I18N"
+                    placeholder={t('loginPage.nickname')}
                     onChange={formik.handleChange}
                     value={formik.values.username}
                     isInvalid={formik.touched.password && Boolean(formik.errors.password)}
                     required
                   />
-                  <FormLabel htmlFor="username">LoginNickName_I18N</FormLabel>
+                  <FormLabel htmlFor="username">{t('loginPage.nickname')}</FormLabel>
                 </FormGroup>
                 <FormGroup className="form-floating mb-3">
                   <FormControl
@@ -83,22 +100,22 @@ const LoginPage = () => {
                     id="password"
                     name="password"
                     autoComplete="curent-password"
-                    placeholder="password_I18N"
+                    placeholder={t('loginPage.password')}
                     onChange={formik.handleChange}
                     value={formik.values.password}
                     isInvalid={formik.touched.password && Boolean(formik.errors.password)}
                     required
                   />
-                  <FormLabel htmlFor="password">LoginPassword_I18N</FormLabel>
-                  <Form.Control.Feedback type="invalid">LoginPasswordError_I18N</Form.Control.Feedback>
+                  <FormLabel htmlFor="password">{t('loginPage.password')}</FormLabel>
+                  <Form.Control.Feedback type="invalid">{t(formik.errors.password)}</Form.Control.Feedback>
                 </FormGroup>
-                <Button type="submit" className="mb-3 w-100" variant="outline-primary">LoginButton_I18N</Button>
+                <Button type="submit" className="mb-3 w-100" variant="outline-primary">{t('loginPage.login')}</Button>
               </Form>
             </Card.Body>
             <Card.Footer>
               <div className="d-flex flex-column align-items-center">
-                <span className="small mb-2">QuestionAccount_I18N</span>
-                <NavLink to={routes.signupPagePath()}>Registration_I18N</NavLink>
+                <span className="small mb-2">{t('loginPage.isAccount')}</span>
+                <NavLink to={routes.signupPagePath()}>{t('loginPage.signup')}</NavLink>
               </div>
             </Card.Footer>
           </Card>
