@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/CoinerLo/frontend-project-lvl4#readme",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.6.2",
     "autoprefixer": "^10.3.6",
     "axios": "^0.21.4",
     "bootstrap": "^5.1.1",
@@ -59,6 +60,7 @@
     "react-theme-switch": "^0.1.7",
     "react-toggle": "^4.1.2",
     "regenerator-runtime": "^0.13.9",
+    "socket.io-client": "^4.2.0",
     "yup": "^0.32.9"
   },
   "devDependencies": {

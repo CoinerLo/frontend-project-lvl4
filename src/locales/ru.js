@@ -1,5 +1,10 @@
 export default {
   translation: {
+    counts: {
+      key_0: '{{count}} сообщение',
+      key_1: '{{count}} сообщения',
+      key_2: '{{count}} сообщений',
+    },
     errors: {
       logError: 'Неверные имя пользователя или пароль',
       netError: 'Ошибка сети',
@@ -15,6 +20,14 @@ export default {
       login: 'Войти',
       signup: 'Регистрация',
       isAccount: 'Нет аккаунта?',
+    },
+    chatPage: {
+      loading: 'Загрузка...',
+    },
+    channels: {
+      channels: 'Каналы',
+      remove: 'Удалить',
+      rename: 'Переименовать',
     },
   },
 };

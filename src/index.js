@@ -1,4 +1,5 @@
 import ReactDOM from 'react-dom';
+import { io } from 'socket.io-client';
 
 import 'core-js/stable/index.js';
 import 'regenerator-runtime/runtime.js';
@@ -11,9 +12,13 @@ const start = async () => {
     localStorage.debug = 'chat:*';
   }
 
-  const conteiner = document.getElementById('chat');
+  const url = window.location.origin;
+  const socet = io(url);
 
-  ReactDOM.render(await init(), conteiner);
+  const conteiner = document.getElementById('chat');
+  const initStartDom = await init(socet);
+
+  ReactDOM.render(initStartDom, conteiner);
 };
 
 start();

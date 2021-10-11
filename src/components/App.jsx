@@ -49,7 +49,7 @@ const AuthProvider = ({ children }) => {
 
 const MainRoute = ({ children, ...props }) => {
   const { user } = useContext(AuthContext);
-
+  console.log(user); // It's user!
   return (
     <Route
       /* eslint-disable react/jsx-props-no-spreading */
