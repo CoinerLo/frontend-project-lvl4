@@ -8,7 +8,7 @@ export default {
     errors: {
       logError: 'Неверные имя пользователя или пароль',
       netError: 'Ошибка сети',
-      someError: 'Неизвестная ошибка',
+      someError: 'Ошибка, попробуйте еще раз',
       passMin: 'Не менее 6 символов',
       passMax: 'Не более 20 символов',
       required: 'Обязательное поле',
@@ -23,11 +23,18 @@ export default {
     },
     chatPage: {
       loading: 'Загрузка...',
+      logOut: 'Выйти',
     },
     channels: {
       channels: 'Каналы',
       remove: 'Удалить',
       rename: 'Переименовать',
     },
+    messages: {
+      add: 'Введите сообщение...',
+      send: 'Тут будет стрелка',
+      sending: 'Отправка...',
+    },
+    hexletChat: 'Hexlet Chat',
   },
 };

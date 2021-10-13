@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
-  Navbar as NavbarBS, // Button, Container, Nav,
+  Navbar as NavbarBS, Button, Container,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+
+import AuthContext from '../context/AuthContext.jsx';
+import routes from '../routes.js';
 
 const Navbar = () => {
   const { t } = useTranslation();
-  console.log(t);
+  const { user, logOut } = useContext(AuthContext);
   return (
-    <NavbarBS>
-      <div>This is navbar!</div>
+    <NavbarBS id="nav" className="shadow-sm navbar-expand-lg bg-white">
+      <Container>
+        <NavbarBS.Brand className="mr-auto" as={Link} to={routes.chatPagePath()}>
+          {t('hexletChat')}
+        </NavbarBS.Brand>
+        {user && <Button variant="primary" onClick={logOut}>{t('chatPage.logOut')}</Button>}
+      </Container>
     </NavbarBS>
   );
 };

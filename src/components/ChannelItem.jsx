@@ -6,8 +6,6 @@ const ChannelItem = ({ variant, channel }) => {
   const { t } = useTranslation();
   const { name, removable } = channel;
 
-  console.log(channel);
-
   const ChannelButtons = (isRemovable) => {
     if (isRemovable) {
       return (

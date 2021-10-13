@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React, { useContext, useState } from 'react';
 import {
   BrowserRouter as Router,
@@ -10,6 +12,7 @@ import routes from '../routes.js';
 import LoginPage from './LoginPage.jsx';
 import SignupPage from './SignupPage.jsx';
 import ChatPage from './ChatPage.jsx';
+import Navbar from './Navbar.jsx';
 
 const localStorageKeys = {
   loggedUserData: 'loggedUserData',
@@ -49,10 +52,8 @@ const AuthProvider = ({ children }) => {
 
 const MainRoute = ({ children, ...props }) => {
   const { user } = useContext(AuthContext);
-  console.log(user); // It's user!
   return (
     <Route
-      /* eslint-disable react/jsx-props-no-spreading */
       {...props}
       render={({ location }) => (user ? children
         : (<Redirect to={{ pathname: routes.loginPagePath(), state: { from: location } }} />))}
@@ -64,6 +65,7 @@ const App = () => (
   <AuthProvider>
     <Router>
       <div className="d-flex flex-column h-100">
+        <Navbar />
         <Switch>
           <Route path={routes.loginPagePath()}>
             <LoginPage />
