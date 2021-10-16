@@ -19,10 +19,10 @@ const ChannelItem = ({ variant, channel }) => {
       );
     }
     return (
-      <Dropdown className="d-flex" as={ButtonGroup}>
+      <Dropdown className="d-flex w-100" as={ButtonGroup}>
         <Button
           variant={variant}
-          className="w-100 px-1 rounded-0 rext-start"
+          className="w-100 px-1 rounded-0 text-start"
         >
           <span className="me-2">#</span>
           {name}
@@ -32,7 +32,7 @@ const ChannelItem = ({ variant, channel }) => {
           variant={variant}
           className="flex-grow-0 text-left"
         />
-        <Dropdown.Menu variant={variant} title="">
+        <Dropdown.Menu variant={variant} title="menu">
           <Dropdown.Item>{t('channels.remove')}</Dropdown.Item>
           <Dropdown.Item>{t('channels.rename')}</Dropdown.Item>
         </Dropdown.Menu>

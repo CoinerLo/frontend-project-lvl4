@@ -12,7 +12,8 @@ export default {
       passMin: 'Не менее 6 символов',
       passMax: 'Не более 20 символов',
       required: 'Обязательное поле',
-      length: 'От 3 до 30 символов',
+      length: 'От 3 до 20 символов',
+      uniq: 'Должно быть уникальным',
     },
     loginPage: {
       nickname: 'Ваш ник',
@@ -34,6 +35,12 @@ export default {
       add: 'Введите сообщение...',
       send: 'Тут будет стрелка',
       sending: 'Отправка...',
+    },
+    modals: {
+      addChannel: 'Добавить канал',
+      placeholders: 'Введите имя канала',
+      cancel: 'Отменить',
+      send: 'Отправить',
     },
     hexletChat: 'Hexlet Chat',
   },

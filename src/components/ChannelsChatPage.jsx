@@ -40,7 +40,7 @@ const ChannelsChatPage = () => {
         </Button>
       </FormGroup>
       <FormGroup id="channelsList" className="h-100 pb-3 pe-1 overflow-auto">
-        <ListGroup className="nav">
+        <ListGroup className="nav flex-column nav-pills nav-fill px-2">
           {channels.map((channel) => item(channel))}
         </ListGroup>
       </FormGroup>
