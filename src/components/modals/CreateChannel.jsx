@@ -10,7 +10,7 @@ import ApiContext from '../../context/ApiContext.jsx';
 import { setCurrentChannelId } from '../../reducers/channelsReducer.js';
 
 const CreateChannel = ({ close, channelsNames, dispatch }) => {
-  const { t } = useTranslation;
+  const { t } = useTranslation();
   const { addChannel } = useContext(ApiContext);
   const validationSchema = Yup.object({
     channelName: Yup.string().trim()

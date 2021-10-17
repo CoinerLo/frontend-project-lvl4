@@ -13,6 +13,7 @@ import LoginPage from './LoginPage.jsx';
 import SignupPage from './SignupPage.jsx';
 import ChatPage from './ChatPage.jsx';
 import Navbar from './Navbar.jsx';
+import ModalComponent from './Modal.jsx';
 
 const localStorageKeys = {
   loggedUserData: 'loggedUserData',
@@ -79,6 +80,7 @@ const App = () => (
         </Switch>
       </div>
     </Router>
+    <ModalComponent />
   </AuthProvider>
 );
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, ButtonGroup, Dropdown } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
-const ChannelItem = ({ variant, channel }) => {
+const ChannelItem = ({ variant, channel, handleChangeChannel }) => {
   const { t } = useTranslation();
   const { name, removable } = channel;
 
@@ -23,6 +23,7 @@ const ChannelItem = ({ variant, channel }) => {
         <Button
           variant={variant}
           className="w-100 px-1 rounded-0 text-start"
+          onClick={handleChangeChannel}
         >
           <span className="me-2">#</span>
           {name}

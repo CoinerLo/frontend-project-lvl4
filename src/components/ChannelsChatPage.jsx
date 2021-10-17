@@ -3,10 +3,15 @@ import { useTranslation } from 'react-i18next';
 import { FormGroup, Button, ListGroup } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getChannels, getCurrentChannel } from '../reducers/channelsReducer.js';
+import { getChannels, getCurrentChannel, setCurrentChannelId } from '../reducers/channelsReducer.js';
 import ChannelItem from './ChannelItem.jsx';
+import { openModal } from '../reducers/modalsReducer.js';
 
-const handleAddChannel = (dispatch) => () => dispatch({ type: 'add' });
+const modalTypes = {
+  add: 'adding',
+};
+const handleChangeChannel = (dispatch, id) => () => dispatch(setCurrentChannelId({ id }));
+const handleAddChannel = (dispatch) => () => dispatch(openModal({ type: modalTypes.add }));
 
 const ChannelsChatPage = () => {
   const { t } = useTranslation();
@@ -22,6 +27,7 @@ const ChannelsChatPage = () => {
         variant={variant}
         channel={channel}
         key={id}
+        handleChangeChannel={handleChangeChannel}
       />
     );
   };
