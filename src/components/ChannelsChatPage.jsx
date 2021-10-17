@@ -9,9 +9,15 @@ import { openModal } from '../reducers/modalsReducer.js';
 
 const modalTypes = {
   add: 'adding',
+  remove: 'removing',
+  rename: 'renaming',
 };
+
 const handleChangeChannel = (dispatch, id) => () => dispatch(setCurrentChannelId({ id }));
 const handleAddChannel = (dispatch) => () => dispatch(openModal({ type: modalTypes.add }));
+const handleRemoveChannel = (dispatch, id) => () => (
+  dispatch(openModal({ type: modalTypes.remove, id }))
+);
 
 const ChannelsChatPage = () => {
   const { t } = useTranslation();
@@ -27,7 +33,8 @@ const ChannelsChatPage = () => {
         variant={variant}
         channel={channel}
         key={id}
-        handleChangeChannel={handleChangeChannel}
+        handleChangeChannel={handleChangeChannel(dispatch, id)}
+        handleRemoveChannel={handleRemoveChannel(dispatch, id)}
       />
     );
   };
