@@ -7,6 +7,7 @@ const ChannelItem = ({
   channel,
   handleChangeChannel,
   handleRemoveChannel,
+  handleRenameChannel,
 }) => {
   const { t } = useTranslation();
   const { name, removable } = channel;
@@ -41,7 +42,7 @@ const ChannelItem = ({
         />
         <Dropdown.Menu variant={variant} title="menu">
           <Dropdown.Item onClick={handleRemoveChannel}>{t('channels.remove')}</Dropdown.Item>
-          <Dropdown.Item>{t('channels.rename')}</Dropdown.Item>
+          <Dropdown.Item onClick={handleRenameChannel}>{t('channels.rename')}</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     );

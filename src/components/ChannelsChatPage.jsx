@@ -18,6 +18,9 @@ const handleAddChannel = (dispatch) => () => dispatch(openModal({ type: modalTyp
 const handleRemoveChannel = (dispatch, id) => () => (
   dispatch(openModal({ type: modalTypes.remove, id }))
 );
+const handleRenameChannel = (dispatch, id) => () => (
+  dispatch(openModal({ type: modalTypes.rename, id }))
+);
 
 const ChannelsChatPage = () => {
   const { t } = useTranslation();
@@ -35,6 +38,7 @@ const ChannelsChatPage = () => {
         key={id}
         handleChangeChannel={handleChangeChannel(dispatch, id)}
         handleRemoveChannel={handleRemoveChannel(dispatch, id)}
+        handleRenameChannel={handleRenameChannel(dispatch, id)}
       />
     );
   };

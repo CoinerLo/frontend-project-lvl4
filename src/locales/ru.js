@@ -45,6 +45,7 @@ export default {
       confirm: 'Уверены?',
       remove: 'Удалить',
       removing: 'Удаление...',
+      renameChannel: 'Переименовать канал',
     },
     hexletChat: 'Hexlet Chat',
   },
