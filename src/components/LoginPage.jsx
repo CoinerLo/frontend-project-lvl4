@@ -31,7 +31,7 @@ const LoginPage = () => {
   const validationSchema = Yup.object({
     username: Yup.string()
       .max(20, 'errors.length')
-      .required('Required'),
+      .required('errors.required'),
     password: Yup.string()
       .min(5, 'errors.passMin')
       .max(20, 'errors.passMax') // Разобраться с ошибками и их выводом

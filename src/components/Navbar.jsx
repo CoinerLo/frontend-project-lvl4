@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import {
-  Navbar as NavbarBS, Button, Container,
+  Navbar as NavbarBootstrap, Button, Container,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -12,14 +12,14 @@ const Navbar = () => {
   const { t } = useTranslation();
   const { user, logOut } = useContext(AuthContext);
   return (
-    <NavbarBS id="nav" className="shadow-sm navbar-expand-lg bg-white">
+    <NavbarBootstrap id="nav" className="shadow-sm navbar-expand-lg bg-white">
       <Container>
-        <NavbarBS.Brand className="mr-auto" as={Link} to={routes.chatPagePath()}>
+        <NavbarBootstrap.Brand className="mr-auto" as={Link} to={routes.chatPagePath()}>
           {t('hexletChat')}
-        </NavbarBS.Brand>
+        </NavbarBootstrap.Brand>
         {user && <Button variant="primary" onClick={logOut}>{t('chatPage.logOut')}</Button>}
       </Container>
-    </NavbarBS>
+    </NavbarBootstrap>
   );
 };
 

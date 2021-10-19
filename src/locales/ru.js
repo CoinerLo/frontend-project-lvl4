@@ -1,9 +1,9 @@
 export default {
   translation: {
     counts: {
-      key_0: '{{count}} сообщение',
-      key_1: '{{count}} сообщения',
-      key_2: '{{count}} сообщений',
+      key_one: '{{count}} сообщение',
+      key_few: '{{count}} сообщения',
+      key_many: '{{count}} сообщений',
     },
     errors: {
       logError: 'Неверные имя пользователя или пароль',
@@ -14,6 +14,8 @@ export default {
       required: 'Обязательное поле',
       length: 'От 3 до 20 символов',
       uniq: 'Должно быть уникальным',
+      confirm: 'Пароли должны совпадать',
+      existing: 'Такой пользователь уже существует',
     },
     loginPage: {
       nickname: 'Ваш ник',
@@ -46,6 +48,13 @@ export default {
       remove: 'Удалить',
       removing: 'Удаление...',
       renameChannel: 'Переименовать канал',
+    },
+    signupPage: {
+      registration: 'Регистрация',
+      username: 'Имя пользователя',
+      password: 'Пароль',
+      confirmPass: 'Подтвердите пароль',
+      registerNow: 'Зарегистрироваться',
     },
     hexletChat: 'Hexlet Chat',
   },

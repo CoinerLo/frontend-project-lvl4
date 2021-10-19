@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { Col, FormGroup } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+import { animateScroll as scroll } from 'react-scroll';
 
 import MessageFormChat from './MessageFormChat.jsx';
 import { getCurrentChannel } from '../reducers/channelsReducer.js';
@@ -24,6 +25,10 @@ const MessageWindowChatPage = () => {
   const messages = useSelector(getCurrentChannelMessages);
   const messagesLength = messages.length;
 
+  useEffect(() => scroll.scrollToBottom({
+    containerId: 'message-box', smooth: false, duration: 0,
+  }), [messages]);
+
   return (
     <Col className="h-100 p-0">
       <div className="d-flex flex-column h-100">
@@ -33,9 +38,9 @@ const MessageWindowChatPage = () => {
           </p>
           <span className="text-muted">{t('counts.key', { count: messagesLength })}</span>
         </div>
-        <FormGroup id="message-box" className="chat-messages overflow-auto px-5">
+        <div id="message-box" className="chat-messages overflow-auto px-5">
           {messages.map(Message)}
-        </FormGroup>
+        </div>
         <MessageFormChat />
       </div>
     </Col>
