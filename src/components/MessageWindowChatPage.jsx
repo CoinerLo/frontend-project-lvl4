@@ -36,7 +36,7 @@ const MessageWindowChatPage = () => {
           <p className="m-0">
             <b>{`# ${nameChannel}`}</b>
           </p>
-          <span className="text-muted">{t('counts.key', { count: messagesLength })}</span>
+          <span className="text-muted">{t('counts.key', { count: messagesLength ?? 0 })}</span>
         </div>
         <div id="message-box" className="chat-messages overflow-auto px-5">
           {messages.map(Message)}

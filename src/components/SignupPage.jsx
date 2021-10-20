@@ -26,12 +26,11 @@ const SignupPage = () => {
       .max(20, 'errors.length')
       .required('errors.required'),
     password: Yup.string().trim()
-      .min(6, 'errors.passMin')
+      .min(5, 'errors.passMin')
       .max(20, 'errors.passMax')
       .required('errors.required'),
     confirmPassword: Yup.string().trim()
       .oneOf([Yup.ref('password'), null], 'errors.confirm')
-      .min(6, 'errors.passMin')
       .required('errors.required'),
   });
 
@@ -47,7 +46,6 @@ const SignupPage = () => {
       password: '',
       confirmPassword: '',
     },
-    validateOnChange: false,
     validationSchema,
     onSubmit: async (value, { setErrors }) => {
       const { chatPagePath, signupPath } = routes;
@@ -64,16 +62,13 @@ const SignupPage = () => {
     },
   });
 
-  const Feedback = (formName) => {
-    console.log(formik.touched[formName]);
-    return (
-      <Form.Control.Feedback type="invalid" tooltip>
-        {formik.touched[formName]
-          && Boolean(formik.errors[formName])
-          && t(formik.errors[formName])}
-      </Form.Control.Feedback>
-    );
-  };
+  const Feedback = (formName) => (
+    <Form.Control.Feedback type="invalid" tooltip>
+      {formik.touched[formName]
+        && Boolean(formik.errors[formName])
+        && t(formik.errors[formName])}
+    </Form.Control.Feedback>
+  );
 
   return (
     <div className="conteiner-fluid flex-grow-1 h-100">

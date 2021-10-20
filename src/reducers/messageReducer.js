@@ -23,7 +23,7 @@ const messagesReducer = createSlice({
         _.remove(state.messages, (message) => message.channelId === channelId);
       })
       .addCase(updateChannels, (state, action) => {
-        state.message = action.payload.messages;
+        state.messages = action.payload.messages;
       });
   },
 });

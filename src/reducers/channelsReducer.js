@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { _ } from 'core-js';
+import { _ } from 'lodash';
 
 import routes from '../routes.js';
 
@@ -49,13 +49,21 @@ const channelsReduser = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(updateChannels.fulfilled, (state, action) => {
-      const channelsList = action.payload.channels.map((channel) => channel.id);
-      const hasChannel = channelsList.includes(state.currentChannelId);
-      state.channels = action.payload.channels;
-      state.currentChannelId = hasChannel
-        ? state.currentChannelId : action.payload.currentChannelId;
-    });
+    builder
+      .addCase(updateChannels.pending, (state, action) => {
+        console.log(state);
+        console.log(action);
+        state.channels = [{ id: 0, name: 'loading', removable: false }];
+      })
+      .addCase(updateChannels.fulfilled, (state, action) => {
+        console.log(state);
+        console.log(action);
+        const channelsList = action.payload.channels.map((channel) => channel.id);
+        const hasChannel = channelsList.includes(state.currentChannelId);
+        state.channels = action.payload.channels;
+        state.currentChannelId = hasChannel
+          ? state.currentChannelId : action.payload.currentChannelId;
+      });
   },
 });
 

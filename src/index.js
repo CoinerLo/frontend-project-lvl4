@@ -15,8 +15,8 @@ const start = async () => {
   const url = window.location.origin;
   const socet = io(url);
 
-  const conteiner = document.getElementById('chat');
   const initStartDom = await init(socet);
+  const conteiner = document.getElementById('chat');
 
   ReactDOM.render(initStartDom, conteiner);
 };

@@ -30,11 +30,12 @@ const LoginPage = () => {
 
   const validationSchema = Yup.object({
     username: Yup.string()
+      .min(3, 'errors.length')
       .max(20, 'errors.length')
       .required('errors.required'),
     password: Yup.string()
       .min(5, 'errors.passMin')
-      .max(20, 'errors.passMax') // Разобраться с ошибками и их выводом
+      .max(20, 'errors.passMax')
       .required('errors.required'),
   });
 
@@ -65,7 +66,7 @@ const LoginPage = () => {
       } catch (e) {
         console.log(e.response);
         nameInput.current.select();
-        setErrors({ password: getError(e) });
+        setErrors({ username: getError(e), password: getError(e) });
       }
     },
   });
@@ -89,10 +90,10 @@ const LoginPage = () => {
                     placeholder={t('loginPage.nickname')}
                     onChange={formik.handleChange}
                     value={formik.values.username}
-                    isInvalid={formik.touched.password && Boolean(formik.errors.password)}
-                    required
+                    isInvalid={formik.touched.username && Boolean(formik.errors.username)}
                   />
                   <FormLabel htmlFor="username">{t('loginPage.nickname')}</FormLabel>
+                  <Form.Control.Feedback type="invalid">{t(formik.errors.username)}</Form.Control.Feedback>
                 </FormGroup>
                 <FormGroup className="form-floating mb-3">
                   <FormControl
@@ -104,7 +105,6 @@ const LoginPage = () => {
                     onChange={formik.handleChange}
                     value={formik.values.password}
                     isInvalid={formik.touched.password && Boolean(formik.errors.password)}
-                    required
                   />
                   <FormLabel htmlFor="password">{t('loginPage.password')}</FormLabel>
                   <Form.Control.Feedback type="invalid">{t(formik.errors.password)}</Form.Control.Feedback>
