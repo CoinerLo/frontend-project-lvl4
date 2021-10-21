@@ -35,7 +35,7 @@ export default {
     },
     messages: {
       add: 'Введите сообщение...',
-      send: 'Тут будет стрелка',
+      send: 'Отправить',
       sending: 'Отправка...',
     },
     modals: {

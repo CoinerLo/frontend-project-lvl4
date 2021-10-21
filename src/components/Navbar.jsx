@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <NavbarBootstrap id="nav" className="shadow-sm navbar-expand-lg bg-white">
       <Container>
-        <NavbarBootstrap.Brand className="mr-auto" as={Link} to={routes.chatPagePath()}>
+        <NavbarBootstrap.Brand as={Link} to={routes.chatPagePath()}>
           {t('hexletChat')}
         </NavbarBootstrap.Brand>
         {user && <Button variant="primary" onClick={logOut}>{t('chatPage.logOut')}</Button>}
