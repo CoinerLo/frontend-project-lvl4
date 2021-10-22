@@ -9,7 +9,7 @@ import { getCurrentChannel } from '../reducers/channelsReducer.js';
 import { getCurrentChannelMessages } from '../reducers/messageReducer.js';
 
 const Message = ({ user, text, id }) => (
-  <div key={id} className="text-breake mb-2">
+  <div key={id} className="text-break mb-2">
     <b>{user}</b>
     {': '}
     {text}
@@ -32,7 +32,7 @@ const MessageWindowChatPage = () => {
   return (
     <Col className="h-100 p-0">
       <div className="d-flex flex-column h-100">
-        <div id="messagesBox" className="bg-light p-3 mb-4 shadow-sm small">
+        <div className="bg-light p-3 mb-4 shadow-sm small">
           <p className="m-0">
             <b>{`# ${nameChannel}`}</b>
           </p>

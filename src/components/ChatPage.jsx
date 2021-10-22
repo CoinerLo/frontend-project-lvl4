@@ -14,7 +14,7 @@ const ChatPage = () => {
   const [isLoaded, setLoadingStatus] = useState(false);
 
   const LoadingComplete = () => (
-    <Container className="flex-grow overflow-hidden h-100 my-4 rounded shadow">
+    <Container className="overflow-hidden h-100 my-4 rounded shadow">
       <div className="row h-100 bg-white flex-md-row">
         <ChannelsChatPage />
         <MessageWindowChatPage />

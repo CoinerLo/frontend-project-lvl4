@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import {
   FormControl,
-  FormGroup,
   InputGroup,
   Button,
   Form,
@@ -58,7 +57,7 @@ const MessageFormChat = () => {
   useEffect(() => textInput.current.focus());
 
   return (
-    <FormGroup className="mt-auto py-3 px-5">
+    <div className="mt-auto py-3 px-5">
       <Form noValidate onSubmit={formik.handleSubmit} className="py-1 border rounded-2">
         <InputGroup className="has-validation">
           <FormControl
@@ -95,7 +94,7 @@ const MessageFormChat = () => {
           </div>
         </InputGroup>
       </Form>
-    </FormGroup>
+    </div>
   );
 };
 
