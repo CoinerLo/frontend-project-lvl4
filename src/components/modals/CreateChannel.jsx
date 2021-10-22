@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import React, { useContext, useEffect, useRef } from 'react';
 import {
-  Button, Form, FormControl, InputGroup, Modal, Spinner,
+  Button, Form, FormControl, FormGroup, Modal, Spinner,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
@@ -50,18 +50,19 @@ const CreateChannel = ({ close, channelsNames, dispatch }) => {
         <Modal.Title>{t('modals.addChannel')}</Modal.Title>
         <Button
           aria-label="Close"
-          variant="secondary"
           className="btn-close"
           onClick={close}
         />
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
-          <InputGroup className="mt-auto" noValidate>
+          <FormGroup>
             <FormControl
               ref={textInput}
               name="channelName"
+              id="add-channel"
               placeholder={t('modals.placeholders')}
+              className="mb-2"
               value={formik.values.channelName}
               disabled={formik.isSubmitting}
               onChange={formik.handleChange}
@@ -70,32 +71,33 @@ const CreateChannel = ({ close, channelsNames, dispatch }) => {
               required
             />
             <Form.Control.Feedback type="invalid">{t(formik.errors.channelName)}</Form.Control.Feedback>
-          </InputGroup>
+            <div className="d-flex justify-content-end">
+              <Button
+                type="button"
+                variant="secondary"
+                className="me-2"
+                onClick={close}
+                disabled={formik.isSubmitting}
+              >
+                {t('modals.cancel')}
+              </Button>
+              <Button
+                type="submit"
+                variant="primary"
+                onClick={formik.handleSubmit}
+                disabled={formik.isSubmitting}
+              >
+                {formik.isSubmitting ? (
+                  <>
+                    <Spinner animation="border" size="sm" role="status" />
+                    <span className="ms-2">{t('messages.sending')}</span>
+                  </>
+                ) : t('modals.send')}
+              </Button>
+            </div>
+          </FormGroup>
         </Form>
       </Modal.Body>
-      <Modal.Footer className="justify-content-between">
-        <Button
-          type="cancel"
-          variant="secondary"
-          onClick={close}
-          disabled={formik.isSubmitting}
-        >
-          {t('modals.cancel')}
-        </Button>
-        <Button
-          type="submit"
-          variant="primary"
-          onClick={formik.handleSubmit}
-          disabled={formik.isSubmitting}
-        >
-          {formik.isSubmitting ? (
-            <>
-              <Spinner animation="border" size="sm" role="status" />
-              <span className="ms-2">{t('messages.sending')}</span>
-            </>
-          ) : t('modals.send')}
-        </Button>
-      </Modal.Footer>
     </>
   );
 };

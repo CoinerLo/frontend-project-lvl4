@@ -27,7 +27,7 @@ const ModalComponent = () => {
   const Component = modals[type];
 
   return (
-    <Modal show={isOpen} onHide={close}>
+    <Modal show={isOpen} onHide={close} centered>
       <Component
         close={close}
         dispatch={dispatch}
