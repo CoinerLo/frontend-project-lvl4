@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import React, { useContext } from 'react';
 import {
-  Button, FormGroup, Modal, Spinner,
+  Button, Modal, Spinner,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
@@ -35,38 +35,37 @@ const RemoveChannel = ({ close, channelId }) => {
         <Modal.Title>{t('modals.removeChannel')}</Modal.Title>
         <Button
           aria-label="Close"
-          variant="secondary"
           className="btn-close"
           onClick={close}
         />
       </Modal.Header>
       <Modal.Body>
         <p className="lead">{t('modals.confirm')}</p>
-        <FormGroup className="text-danger">{formik.errors.channelInfo}</FormGroup>
+        <div className="d-flex justify-content-end">
+          <Button
+            type="button"
+            variant="secondary"
+            className="me-2"
+            onClick={close}
+            disabled={formik.isSubmitting}
+          >
+            {t('modals.cancel')}
+          </Button>
+          <Button
+            type="submit"
+            variant="danger"
+            onClick={formik.handleSubmit}
+            disabled={formik.isSubmitting}
+          >
+            {formik.isSubmitting ? (
+              <>
+                <Spinner animation="border" size="sm" role="status" />
+                <span className="ms-2">{t('modals.removing')}</span>
+              </>
+            ) : t('modals.remove')}
+          </Button>
+        </div>
       </Modal.Body>
-      <Modal.Footer className="justify-content-end">
-        <Button
-          type="cancel"
-          variant="secondary"
-          onClick={close}
-          disabled={formik.isSubmitting}
-        >
-          {t('modals.cancel')}
-        </Button>
-        <Button
-          type="submit"
-          variant="danger"
-          onClick={formik.handleSubmit}
-          disabled={formik.isSubmitting}
-        >
-          {formik.isSubmitting ? (
-            <>
-              <Spinner animation="border" size="sm" role="status" />
-              <span className="ms-2">{t('modals.removing')}</span>
-            </>
-          ) : t('modals.remove')}
-        </Button>
-      </Modal.Footer>
     </>
   );
 };

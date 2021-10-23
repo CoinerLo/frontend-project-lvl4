@@ -45,25 +45,20 @@ const channelsReduser = createSlice({
         const defaultChannel = state.channels[0].id;
         state.currentChannelId = defaultChannel;
       }
-      _.remove(state.channels, (channel) => channel.id === channelId);
+      console.log(state);
+      _.remove(state.channels, (channel) => channel.id === channelId); // wtf???
     },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(updateChannels.pending, (state, action) => {
-        console.log(state);
-        console.log(action);
-        state.channels = [{ id: 0, name: 'loading', removable: false }];
-      })
-      .addCase(updateChannels.fulfilled, (state, action) => {
-        console.log(state);
-        console.log(action);
-        const channelsList = action.payload.channels.map((channel) => channel.id);
-        const hasChannel = channelsList.includes(state.currentChannelId);
-        state.channels = action.payload.channels;
-        state.currentChannelId = hasChannel
-          ? state.currentChannelId : action.payload.currentChannelId;
-      });
+    builder.addCase(updateChannels.fulfilled, (state, action) => {
+      //  console.log(state);
+      //  console.log(action);
+      const channelsList = action.payload.channels.map((channel) => channel.id);
+      const hasChannel = channelsList.includes(state.currentChannelId);
+      state.channels = action.payload.channels;
+      state.currentChannelId = hasChannel
+        ? state.currentChannelId : action.payload.currentChannelId;
+    });
   },
 });
 
