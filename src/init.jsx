@@ -8,7 +8,7 @@ import App from './components/App.jsx';
 import locales from './locales/index.js';
 import reducer from './reducers/index.js';
 import {
-  updateChannels, addChannel, removeChannel, renameChannel,
+  addChannel, removeChannel, renameChannel,
 } from './reducers/channelsReducer.js';
 import { addMessage } from './reducers/messageReducer.js';
 import ApiContext from './context/ApiContext.jsx';
@@ -32,24 +32,17 @@ const init = async (socket) => {
       fallbackLng: 'ru',
     });
 
-  const emitVolatileSocet = (action) => (data) => new Promise((response, reject) => {
-    const timer = setTimeout(() => reject(Error('errors.netError')), 5000);
+  const emitVolatileSocet = (action) => (data) => new Promise((resolve, reject) => {
+    const timer = setTimeout(() => reject(Error('errors.netError')), 3000);
     socket.volatile.emit(action, data, (res) => {
       if (res.status === 'ok') {
         clearTimeout(timer);
-        response(res);
+        resolve(res);
       }
     });
   });
 
-  const getStoreData = (authData) => {
-    socket.on('connect', () => {
-      if (socket.connected) store.dispatch(updateChannels(authData));
-    });
-  };
-
   const api = {
-    getStoreData,
     addChannel: emitVolatileSocet(actions.newChannel),
     sendMessage: emitVolatileSocet(actions.newMessage),
     renameChannel: emitVolatileSocet(actions.renameChannel),

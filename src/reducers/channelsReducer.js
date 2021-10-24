@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { _ } from 'lodash';
+import { _ } from 'core-js';
 
 import routes from '../routes.js';
 
@@ -10,6 +10,7 @@ const updateChannels = createAsyncThunk(
   async ({ authHeader, logOut }) => {
     try {
       const { data } = await axios.get(routes.curentDataPath(), { headers: authHeader });
+      // debugger
       return data;
     } catch (err) {
       console.log(err);
@@ -26,6 +27,12 @@ const channelsReduser = createSlice({
     currentChannelId: null,
   },
   reducers: {
+    loadingChannels(state, action) {
+      const { channels } = action.payload;
+
+      state.channels = channels;
+      state.currentChannelId = state.channels[0].id;
+    },
     addChannel(state, action) {
       const { channelData } = action.payload;
       state.channels.push(channelData);
@@ -45,14 +52,12 @@ const channelsReduser = createSlice({
         const defaultChannel = state.channels[0].id;
         state.currentChannelId = defaultChannel;
       }
-      console.log(state);
-      _.remove(state.channels, (channel) => channel.id === channelId); // wtf???
+      //  state.channels.filter((channel) => channel.id === channelId);
+      _.remove(state.channels, (channel) => channel.id === channelId);
     },
   },
   extraReducers: (builder) => {
     builder.addCase(updateChannels.fulfilled, (state, action) => {
-      //  console.log(state);
-      //  console.log(action);
       const channelsList = action.payload.channels.map((channel) => channel.id);
       const hasChannel = channelsList.includes(state.currentChannelId);
       state.channels = action.payload.channels;
@@ -69,6 +74,7 @@ const getChannelsNames = (state) => state.channels.channels
   .map((channel) => channel.name);
 
 export const {
+  loadingChannels,
   addChannel,
   setCurrentChannelId,
   renameChannel,

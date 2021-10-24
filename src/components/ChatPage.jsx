@@ -1,17 +1,24 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Container, Spinner } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 
 import AuthContext from '../context/AuthContext.jsx';
-import ApiContext from '../context/ApiContext.jsx';
+// import ApiContext from '../context/ApiContext.jsx';
 import ChannelsChatPage from './ChannelsChatPage.jsx';
 import MessageWindowChatPage from './MessageWindowChatPage.jsx';
+import { loadingChannels } from '../reducers/channelsReducer.js';
+import { loadingMessages } from '../reducers/messageReducer.js';
+import routes from '../routes.js';
 
 const ChatPage = () => {
   const { t } = useTranslation();
   const { getAuthHeader, logOut } = useContext(AuthContext);
-  const { getStoreData } = useContext(ApiContext);
+  // const { getStoreData } = useContext(ApiContext);
   const [isLoaded, setLoadingStatus] = useState(false);
+  const dispatch = useDispatch();
+  const authHeader = getAuthHeader();
 
   const LoadingComplete = () => (
     <Container className="overflow-hidden h-100 my-4 rounded shadow">
@@ -29,10 +36,28 @@ const ChatPage = () => {
     </>
   );
 
+  const getStoreData = async (auth) => {
+    try {
+      const res = await axios.get(routes.curentDataPath(), { headers: auth });
+      const { channels, messages } = res.data;
+      dispatch(loadingChannels({ channels }));
+      dispatch(loadingMessages({ messages }));
+      setLoadingStatus(true);
+    } catch (err) {
+      console.log(err);
+      if (err.response.status === 401) {
+        console.log('Authorization error!');
+        logOut();
+      }
+    }
+  };
+
   useEffect(() => {
-    setLoadingStatus(true);
-    const authHeader = getAuthHeader();
-    getStoreData({ authHeader, logOut });
+    getStoreData(authHeader);
+
+    // const authHeader = getAuthHeader();
+    // getStoreData({ authHeader, logOut });
+    // debugger;
   }, []);
 
   return isLoaded ? LoadingComplete() : Loading();

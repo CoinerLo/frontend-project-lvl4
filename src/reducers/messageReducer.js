@@ -3,7 +3,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
-import { updateChannels, removeChannel } from './channelsReducer.js';
+import { /* updateChannels, */ removeChannel } from './channelsReducer.js';
 
 const messagesReducer = createSlice({
   name: 'messageData',
@@ -11,21 +11,29 @@ const messagesReducer = createSlice({
     messages: [],
   },
   reducers: {
+    loadingMessages(state, action) {
+      const { messages } = action.payload;
+      state.messages = messages;
+    },
     addMessage(state, action) {
       const { messageData } = action.payload;
       state.messages.push(messageData);
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(removeChannel, (state, action) => {
         const { channelId } = action.payload;
         _.remove(state.messages, (message) => message.channelId === channelId);
-      })
-      .addCase(updateChannels, (state, action) => {
-        state.messages = action.payload.messages;
       });
+    /*
+    .addCase(updateChannels, (state, action) => {
+      state.messages = action.payload.messages;
+    });
+    */
   },
+
 });
 
 export const getCurrentChannelMessages = (state) => {
@@ -34,6 +42,6 @@ export const getCurrentChannelMessages = (state) => {
   return messages.filter((message) => message.channelId === currentChannelId);
 };
 
-export const { addMessage } = messagesReducer.actions;
+export const { addMessage, loadingMessages } = messagesReducer.actions;
 
 export default messagesReducer.reducer;

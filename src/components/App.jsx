@@ -19,6 +19,12 @@ const localStorageKeys = {
   loggedUserData: 'loggedUserData',
 };
 
+const PageNotFound = () => (
+  <div className="d-flex h-100 justify-content-center align-items-center">
+    <h2>Oops, something went wrong</h2>
+  </div>
+);
+
 const getAuthHeader = () => {
   const loggedUser = JSON.parse(localStorage.getItem(localStorageKeys.loggedUserData));
   if (loggedUser && loggedUser.token) {
@@ -68,15 +74,18 @@ const App = () => (
       <div className="d-flex flex-column h-100">
         <Navbar />
         <Switch>
+          <MainRoute exact path={routes.chatPagePath()}>
+            <ChatPage />
+          </MainRoute>
           <Route path={routes.loginPagePath()}>
             <LoginPage />
           </Route>
           <Route path={routes.signupPagePath()}>
             <SignupPage />
           </Route>
-          <MainRoute exact path={routes.chatPagePath()}>
-            <ChatPage />
-          </MainRoute>
+          <Route path="*">
+            <PageNotFound />
+          </Route>
         </Switch>
       </div>
     </Router>
