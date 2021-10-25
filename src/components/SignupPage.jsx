@@ -26,7 +26,7 @@ const SignupPage = () => {
       .max(20, 'errors.length')
       .required('errors.required'),
     password: Yup.string().trim()
-      .min(5, 'errors.passMin')
+      .min(6, 'errors.passMin')
       .max(20, 'errors.passMax')
       .required('errors.required'),
     confirmPassword: Yup.string().trim()
@@ -85,7 +85,7 @@ const SignupPage = () => {
                   <FormControl
                     ref={nameInput}
                     name="username"
-                    placeholder={t('signupPage.username')}
+                    placeholder={t('errors.length')}
                     type="text"
                     id="username"
                     autoComplete="username"
@@ -107,7 +107,7 @@ const SignupPage = () => {
                     name="password"
                     type="password"
                     id="password"
-                    placeholder={t('signupPage.password')}
+                    placeholder={t('errors.passMin')}
                     autoComplete="new-password"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -128,7 +128,7 @@ const SignupPage = () => {
                     name="confirmPassword"
                     type="password"
                     id="confirmPassword"
-                    placeholder={t('signupPage.confirmPass')}
+                    placeholder={t('errors.confirm')}
                     autoComplete="new-password"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
