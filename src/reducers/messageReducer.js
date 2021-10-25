@@ -3,7 +3,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
-import { /* updateChannels, */ removeChannel } from './channelsReducer.js';
+import { removeChannel } from './channelsReducer.js';
 
 const messagesReducer = createSlice({
   name: 'messageData',
@@ -27,11 +27,6 @@ const messagesReducer = createSlice({
         const { channelId } = action.payload;
         _.remove(state.messages, (message) => message.channelId === channelId);
       });
-    /*
-    .addCase(updateChannels, (state, action) => {
-      state.messages = action.payload.messages;
-    });
-    */
   },
 
 });

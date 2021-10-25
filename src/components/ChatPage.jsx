@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 import AuthContext from '../context/AuthContext.jsx';
-// import ApiContext from '../context/ApiContext.jsx';
 import ChannelsChatPage from './ChannelsChatPage.jsx';
 import MessageWindowChatPage from './MessageWindowChatPage.jsx';
 import { loadingChannels } from '../reducers/channelsReducer.js';
@@ -15,26 +14,9 @@ import routes from '../routes.js';
 const ChatPage = () => {
   const { t } = useTranslation();
   const { getAuthHeader, logOut } = useContext(AuthContext);
-  // const { getStoreData } = useContext(ApiContext);
   const [isLoaded, setLoadingStatus] = useState(false);
   const dispatch = useDispatch();
   const authHeader = getAuthHeader();
-
-  const LoadingComplete = () => (
-    <Container className="overflow-hidden h-100 my-4 rounded shadow">
-      <div className="row h-100 bg-white flex-md-row">
-        <ChannelsChatPage />
-        <MessageWindowChatPage />
-      </div>
-    </Container>
-  );
-
-  const Loading = () => (
-    <>
-      <Spinner animation="grow" role="status" variant="primary" />
-      <span>{t('chatPage.loading')}</span>
-    </>
-  );
 
   const getStoreData = async (auth) => {
     try {
@@ -52,12 +34,24 @@ const ChatPage = () => {
     }
   };
 
+  const LoadingComplete = () => (
+    <Container className="overflow-hidden h-100 my-4 rounded shadow">
+      <div className="row h-100 bg-white flex-md-row">
+        <ChannelsChatPage />
+        <MessageWindowChatPage />
+      </div>
+    </Container>
+  );
+
+  const Loading = () => (
+    <>
+      <Spinner animation="grow" role="status" variant="primary" />
+      <span>{t('chatPage.loading')}</span>
+    </>
+  );
+
   useEffect(() => {
     getStoreData(authHeader);
-
-    // const authHeader = getAuthHeader();
-    // getStoreData({ authHeader, logOut });
-    // debugger;
   }, []);
 
   return isLoaded ? LoadingComplete() : Loading();

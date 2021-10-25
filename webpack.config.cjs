@@ -3,6 +3,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const mode = process.env.NODE_ENV || 'development';
 
@@ -12,7 +13,6 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   output: {
-    // filename: '[name].[contenthash].js',
     path: path.join(__dirname, 'dist', 'public'),
     publicPath: '/assets/',
   },
@@ -30,6 +30,7 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin(),
     new CleanWebpackPlugin(),
+    new Dotenv(),
   ],
   module: {
     rules: [
