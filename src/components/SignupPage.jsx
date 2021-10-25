@@ -63,7 +63,7 @@ const SignupPage = () => {
   });
 
   const Feedback = (formName) => (
-    <Form.Control.Feedback type="invalid" tooltip>
+    <Form.Control.Feedback type="invalid" placement="right" tooltip>
       {formik.touched[formName]
         && Boolean(formik.errors[formName])
         && t(formik.errors[formName])}

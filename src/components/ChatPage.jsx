@@ -1,4 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
+import { useAsyncEffect } from 'use-async-effect';
 import { useTranslation } from 'react-i18next';
 import { Container, Spinner } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
@@ -50,8 +51,8 @@ const ChatPage = () => {
     </>
   );
 
-  useEffect(() => {
-    getStoreData(authHeader);
+  useAsyncEffect(async () => {
+    await getStoreData(authHeader);
   }, []);
 
   return isLoaded ? LoadingComplete() : Loading();
