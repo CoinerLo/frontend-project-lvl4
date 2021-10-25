@@ -4,21 +4,16 @@ import {
   Button, Form, FormControl, FormGroup, Modal, Spinner,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import * as Yup from 'yup';
 
 import ApiContext from '../../context/ApiContext.jsx';
 import { setCurrentChannelId } from '../../reducers/channelsReducer.js';
+import validation from '../../variables.js';
 
 const CreateChannel = ({ close, channelsNames, dispatch }) => {
   const { t } = useTranslation();
   const { addChannel } = useContext(ApiContext);
-  const validationSchema = Yup.object({
-    channelName: Yup.string().trim()
-      .min(3, 'errors.length')
-      .max(20, 'errors.length')
-      .notOneOf(channelsNames, 'errors.uniq')
-      .required('errors.required'),
-  });
+
+  const validationSchema = validation(channelsNames);
 
   const formik = useFormik({
     initialValues: { channelName: '' },

@@ -4,9 +4,9 @@ import {
   Button, Form, FormControl, FormGroup, Modal, Spinner,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import * as Yup from 'yup';
 
 import ApiContext from '../../context/ApiContext.jsx';
+import validation from '../../variables.js';
 
 const RenameChannel = ({
   close,
@@ -18,13 +18,7 @@ const RenameChannel = ({
   const { renameChannel } = useContext(ApiContext);
   const { name } = channels.find((channel) => channel.id === channelId);
 
-  const validationSchema = Yup.object({
-    channelName: Yup.string().trim()
-      .min(3, 'errors.length')
-      .max(20, 'errors.length')
-      .notOneOf(channelsNames, 'errors.uniq')
-      .required('errors.required'),
-  });
+  const validationSchema = validation(channelsNames);
 
   const formik = useFormik({
     initialValues: { channelName: name },
