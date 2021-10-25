@@ -108,9 +108,10 @@ const SignupPage = () => {
                     type="password"
                     id="password"
                     placeholder={t('signupPage.password')}
-                    autoComplete="current-password"
+                    autoComplete="new-password"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
+                    aria-describedby="passwordHelpBlock"
                     value={formik.values.password}
                     isInvalid={formik.touched.password && Boolean(formik.errors.password)}
                     required
@@ -128,7 +129,7 @@ const SignupPage = () => {
                     type="password"
                     id="confirmPassword"
                     placeholder={t('signupPage.confirmPass')}
-                    autoComplete="current-password"
+                    autoComplete="new-password"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.confirmPassword}

@@ -25,7 +25,6 @@ const ChatPage = () => {
       const { channels, messages } = res.data;
       dispatch(loadingChannels({ channels }));
       dispatch(loadingMessages({ messages }));
-      setLoadingStatus(true);
     } catch (err) {
       console.log(err);
       if (err.response.status === 401) {
@@ -53,7 +52,10 @@ const ChatPage = () => {
 
   useAsyncEffect(async () => {
     await getStoreData(authHeader);
-  }, () => setLoadingStatus(false), []);
+    setLoadingStatus(true);
+  }, () => {
+    setLoadingStatus(false);
+  }, []);
 
   return isLoaded ? LoadingComplete() : Loading();
 };
