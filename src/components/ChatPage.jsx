@@ -53,7 +53,7 @@ const ChatPage = () => {
 
   useAsyncEffect(async () => {
     await getStoreData(authHeader);
-  }, []);
+  }, () => setLoadingStatus(false), []);
 
   return isLoaded ? LoadingComplete() : Loading();
 };

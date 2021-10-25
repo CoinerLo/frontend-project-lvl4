@@ -62,13 +62,13 @@ const SignupPage = () => {
     },
   });
 
-  const Feedback = (formName) => (
-    <Form.Control.Feedback type="invalid" placement="right" tooltip>
-      {formik.touched[formName]
-        && Boolean(formik.errors[formName])
-        && t(formik.errors[formName])}
-    </Form.Control.Feedback>
-  );
+  // const Feedback = (formName) => (
+  //  <Form.Control.Feedback type="invalid" placement="right" tooltip>
+  //    {formik.touched[formName]
+  //      && Boolean(formik.errors[formName])
+  //      && t(formik.errors[formName])}
+  //  </Form.Control.Feedback>
+  // );
 
   return (
     <div className="conteiner-fluid flex-grow-1 h-100">
@@ -96,7 +96,11 @@ const SignupPage = () => {
                     required
                   />
                   <FormLabel htmlFor="username">{t('signupPage.username')}</FormLabel>
-                  {Feedback('username')}
+                  <Form.Control.Feedback type="invalid" placement="right" tooltip>
+                    {formik.touched.username
+                      && Boolean(formik.errors.username)
+                      && t(formik.errors.username)}
+                  </Form.Control.Feedback>
                 </FormGroup>
                 <FormGroup className="form-floating mb-3">
                   <FormControl
@@ -112,7 +116,11 @@ const SignupPage = () => {
                     required
                   />
                   <FormLabel htmlFor="username">{t('signupPage.password')}</FormLabel>
-                  {Feedback('password')}
+                  <Form.Control.Feedback type="invalid" placement="right" tooltip>
+                    {formik.touched.password
+                      && Boolean(formik.errors.password)
+                      && t(formik.errors.password)}
+                  </Form.Control.Feedback>
                 </FormGroup>
                 <FormGroup className="form-floating mb-3">
                   <FormControl
@@ -130,7 +138,11 @@ const SignupPage = () => {
                     required
                   />
                   <FormLabel htmlFor="username">{t('signupPage.confirmPass')}</FormLabel>
-                  {Feedback('confirmPassword')}
+                  <Form.Control.Feedback type="invalid" placement="right" tooltip>
+                    {formik.touched.confirmPassword
+                      && Boolean(formik.errors.confirmPassword)
+                      && t(formik.errors.confirmPassword)}
+                  </Form.Control.Feedback>
                 </FormGroup>
                 <Button type="submit" className="w-100 mb-3" variant="outline-primary">
                   {t('signupPage.registerNow')}
