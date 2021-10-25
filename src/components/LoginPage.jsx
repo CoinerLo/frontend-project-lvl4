@@ -30,12 +30,8 @@ const LoginPage = () => {
 
   const validationSchema = Yup.object({
     username: Yup.string()
-      .min(3, 'errors.length')
-      .max(20, 'errors.length')
       .required('errors.required'),
     password: Yup.string()
-      .min(5, 'errors.passMin')
-      .max(20, 'errors.passMax')
       .required('errors.required'),
   });
 
@@ -93,7 +89,6 @@ const LoginPage = () => {
                     isInvalid={formik.touched.username && Boolean(formik.errors.username)}
                   />
                   <FormLabel htmlFor="username">{t('loginPage.nickname')}</FormLabel>
-                  <Form.Control.Feedback type="invalid">{t(formik.errors.username)}</Form.Control.Feedback>
                 </FormGroup>
                 <FormGroup className="form-floating mb-3">
                   <FormControl
@@ -107,7 +102,7 @@ const LoginPage = () => {
                     isInvalid={formik.touched.password && Boolean(formik.errors.password)}
                   />
                   <FormLabel htmlFor="password">{t('loginPage.password')}</FormLabel>
-                  <Form.Control.Feedback type="invalid">{t(formik.errors.password)}</Form.Control.Feedback>
+                  <Form.Control.Feedback type="invalid" tooltip>{t(formik.errors.password)}</Form.Control.Feedback>
                 </FormGroup>
                 <Button type="submit" className="mb-3 w-100" variant="outline-primary">{t('loginPage.login')}</Button>
               </Form>
