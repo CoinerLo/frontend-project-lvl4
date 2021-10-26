@@ -56,6 +56,7 @@ const CreateChannel = ({ close, channelsNames, dispatch }) => {
               ref={textInput}
               name="channelName"
               id="add-channel"
+              data-testid="add-channel"
               placeholder={t('modals.placeholders')}
               className="mb-2"
               value={formik.values.channelName}
