@@ -116,7 +116,7 @@ const SignupPage = () => {
                     isInvalid={formik.touched.password && Boolean(formik.errors.password)}
                     required
                   />
-                  <FormLabel htmlFor="username">{t('signupPage.password')}</FormLabel>
+                  <FormLabel htmlFor="password">{t('signupPage.password')}</FormLabel>
                   <Form.Control.Feedback type="invalid" placement="right" tooltip>
                     {formik.touched.password
                       && Boolean(formik.errors.password)
@@ -138,7 +138,7 @@ const SignupPage = () => {
                     }
                     required
                   />
-                  <FormLabel htmlFor="username">{t('signupPage.confirmPass')}</FormLabel>
+                  <FormLabel htmlFor="confirmPassword">{t('signupPage.confirmPass')}</FormLabel>
                   <Form.Control.Feedback type="invalid" placement="right" tooltip>
                     {formik.touched.confirmPassword
                       && Boolean(formik.errors.confirmPassword)
