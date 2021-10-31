@@ -74,7 +74,7 @@ const LoginPage = () => {
           <Card id="logIn" className="shadow-sm">
             <Card.Body className="d-flex flex-column flex-md-row justify-content-around align-items-center p-5">
               <div><img src={loginImage} className="rounded-circle" alt={t('loginPage.login')} /></div>
-              <Form className="w-50" onSubmit={formik.handleSubmit}>
+              <Form className="w-sm-50" onSubmit={formik.handleSubmit}>
                 <h1 className="text-center mb-4">{t('loginPage.login')}</h1>
                 <FormGroup className="form-floating mb-3">
                   <FormControl

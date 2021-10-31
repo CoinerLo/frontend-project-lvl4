@@ -21,7 +21,7 @@ const ChannelItem = ({
           onClick={handleChangeChannel}
         >
           <span className="me-2">#</span>
-          {name}
+          <span className="text-break">{name}</span>
         </Button>
       );
     }
@@ -33,7 +33,7 @@ const ChannelItem = ({
           onClick={handleChangeChannel}
         >
           <span className="me-2">#</span>
-          {name}
+          <span className="text-break">{name}</span>
         </Button>
         <Dropdown.Toggle
           split

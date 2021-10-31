@@ -75,11 +75,11 @@ const SignupPage = () => {
       <div className="row justify-content-center align-content-center h-100">
         <div className="col-12 col-md-8 col-xxl-6">
           <Card id="signUp" className="shadow-sm">
-            <Card.Body className="d-flex flex-column flex-md-row justify-content-around align-items-center p-5">
+            <Card.Body className="d-flex flex-column flex-md-row justify-content-around align-items-center p-sm-5">
               <div>
                 <img src={registrationImg} alt="registrationPicture" className="rounded-circle" />
               </div>
-              <Form className="w-50" onSubmit={formik.handleSubmit}>
+              <Form className="w-sm-50" onSubmit={formik.handleSubmit}>
                 <h1 className="text-center mb-4">{t('signupPage.registration')}</h1>
                 <FormGroup className="form-floating mb-3">
                   <FormControl

@@ -31,14 +31,14 @@ const MessageWindowChatPage = () => {
 
   return (
     <Col className="h-100 p-0">
-      <div className="d-flex flex-column h-100">
-        <div className="bg-light p-3 mb-4 shadow-sm small">
+      <div className="d-flex flex-column h-100 position-relative">
+        <div className="bg-light p-3 shadow-sm small w-100">
           <p className="m-0">
             <b>{`# ${nameChannel}`}</b>
           </p>
           <span className="text-muted">{t('counts.key', { count: messagesLength ?? 0 })}</span>
         </div>
-        <div id="message-box" className="chat-messages overflow-auto px-5">
+        <div id="message-box" className="flex-grow-1 chat-messages overflow-auto px-5 pb-5 mb-2">
           {messages.map(Message)}
         </div>
         <MessageFormChat />
