@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { Col } from 'react-bootstrap';
 import { animateScroll as scroll } from 'react-scroll';
 
 import MessageFormChat from './MessageFormChat.jsx';
@@ -30,20 +29,20 @@ const MessageWindowChatPage = () => {
   }), [messages]);
 
   return (
-    <Col className="h-100 p-0">
-      <div className="d-flex flex-column h-100 position-relative">
-        <div className="bg-light p-3 shadow-sm small w-100">
+    <div className="h-100 p-0 col-10">
+      <div className="d-flex h-100 flex-column justify-content-between">
+        <div className="p-3 small shadow-sm bg-light">
           <p className="m-0">
             <b>{`# ${nameChannel}`}</b>
           </p>
           <span className="text-muted">{t('counts.key', { count: messagesLength ?? 0 })}</span>
         </div>
-        <div id="message-box" className="flex-grow-1 chat-messages overflow-auto px-5 pb-5 mb-2">
+        <div id="message-box" className="overflow-auto px-2 px-sm-5 pb-5 mb-2">
           {messages.map(Message)}
         </div>
         <MessageFormChat />
       </div>
-    </Col>
+    </div>
   );
 };
 

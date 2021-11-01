@@ -44,7 +44,7 @@ const ChannelsChatPage = () => {
   };
 
   return (
-    <div id="channelBox" className="d-flex flex-column h-100 col-sm-2 border-end pt-5 px-0 bg-light overflow-auto">
+    <div id="channelBox" className="d-flex flex-column h-100 col-2 border-end pt-2 pt-sm-5 px-0 bg-light overflow-auto">
       <FormGroup className="d-flex justify-content-between mb-2 ps-4 pe-2">
         <span>{t('channels.channels')}</span>
         <Button
@@ -60,7 +60,7 @@ const ChannelsChatPage = () => {
           <span className="visually-hidden">+</span>
         </Button>
       </FormGroup>
-      <FormGroup id="channelsList" className="h-100 pb-3 pe-1">
+      <FormGroup id="channelsList" className="h-100 pb-3 pe-1 overflow-auto">
         <ListGroup className="nav nav-pills nav-fill px-2">
           {channels.map((channel) => item(channel))}
         </ListGroup>
