@@ -57,7 +57,7 @@ const MessageFormChat = () => {
   useEffect(() => textInput.current.focus());
 
   return (
-    <div className="py-3 px-5">
+    <div className="py-3 px-2 px-sm-5">
       <Form noValidate onSubmit={formik.handleSubmit} className="py-1 border rounded-2">
         <InputGroup className="has-validation">
           <FormControl

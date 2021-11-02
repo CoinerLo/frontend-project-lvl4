@@ -20,7 +20,7 @@ const ChatPage = () => {
 
   const LoadingComplete = () => (
     <Container className="overflow-hidden h-100 my-4 rounded shadow">
-      <div className="row h-100 bg-white">
+      <div className="row h-100 bg-white flex-column">
         <ChannelsChatPage />
         <MessageWindowChatPage />
       </div>
