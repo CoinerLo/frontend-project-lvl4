@@ -29,7 +29,7 @@ const MessageWindowChatPage = () => {
   }), [messages]);
 
   return (
-    <div className="h-sm-100 h-75 p-0 col col-sm-10">
+    <div className="h-100 p-0 col-8 col-lg-10">
       <div className="d-flex h-100 flex-column justify-content-between">
         <div className="p-3 small shadow-sm bg-light">
           <p className="m-0">

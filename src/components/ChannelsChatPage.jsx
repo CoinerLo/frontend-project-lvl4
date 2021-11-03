@@ -44,7 +44,7 @@ const ChannelsChatPage = () => {
   };
 
   return (
-    <div id="channelBox" className="d-flex flex-column h-100 col col-sm-2 border-end pt-2 pt-sm-5 px-0 bg-light overflow-auto">
+    <div id="channelBox" className="d-flex flex-column h-100 col-4 col-lg-2 border-end pt-3 pt-md-5 px-0 bg-light">
       <FormGroup className="d-flex justify-content-between mb-2 ps-4 pe-2">
         <span>{t('channels.channels')}</span>
         <Button

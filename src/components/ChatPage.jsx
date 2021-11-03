@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Container, Spinner } from 'react-bootstrap';
+import { Container, Spinner, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
@@ -19,11 +19,11 @@ const ChatPage = () => {
   const authHeader = getAuthHeader();
 
   const LoadingComplete = () => (
-    <Container className="overflow-hidden h-100 my-4 rounded shadow">
-      <div className="row h-100 bg-white flex-column">
+    <Container className="overflow-hidden h-100 my-2 my-lg-4 rounded shadow">
+      <Row className="row-cols-2 h-100 bg-white">
         <ChannelsChatPage />
         <MessageWindowChatPage />
-      </div>
+      </Row>
     </Container>
   );
 
